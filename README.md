@@ -8,10 +8,11 @@
 
 * ```git remote -v``` : 컴퓨터와 원격이 잘 연결되었는지 확인
 
-* ```git pull origin main```
+* ```git pull origin main``` : main 코드 가져오기
+  
 IntelliJ의 terminal에서 자신의 branch로 checkout을 해주세요
 
-* ```git checkout origin feature/#이슈넘버
+* ```git checkout origin feature/#이슈넘버```
 *작업은 해당 꼭 **본인 branch**에서만 
 
 * ```git branch``` : 현재 branch 확인
