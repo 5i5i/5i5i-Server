@@ -2,12 +2,19 @@
 
 ### 프로젝트 열기
 프로젝트를 하나 생성하고 IntelliJ에서 원격 저장소를 연결해줍니다
+
 git init // 저장소 생성
-git clone  //저장소 내 컴퓨터 <-> 원격 연결
+
+git clone https://github.com/5i5i/5i5i-Server.git //저장소 내 컴퓨터 <-> 원격 연결
+
 git remote -v // 컴퓨터와 원격이 잘 연결되었는지 확인
+
 git pull origin main
+
 IntelliJ의 terminal에서 자신의 branch로 checkout을 해주세요
+
 git checkout origin feature/#(이슈넘버)
 작업은 해당 본인 branch에서만 진행해주세요 (❌main branch❌)
+
 git branch : 현재 branch 확인
 위의 방식이 어렵다면 깃 Clone 하는 방법을 검색해보기
