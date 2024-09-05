@@ -5,6 +5,7 @@
 * ```git init``` : 저장소 생성
 
 * ```git clone https://github.com/5i5i/5i5i-Server.git``` : 저장소 내 컴퓨터 <-> 원격 연결
+* +원래는 링크로 잘 됐었는데 지금해보니 안되네요 일단 링크로 시도해보시고, 안되면 git clone {SSH키로 바꿔서 해보세요!}
 
 * ```git remote -v``` : 컴퓨터와 원격이 잘 연결되었는지 확인
 
