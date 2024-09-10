@@ -1,4 +1,4 @@
-package _i5i.AISecurity.web.member;
+package _i5i.AISecurity.web.member.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
