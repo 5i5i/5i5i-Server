@@ -1,6 +1,7 @@
 package _i5i.AISecurity.web.member.entity;
 
 import _i5i.AISecurity.web.personal_information.entity.PersonalInformation;
+import _i5i.AISecurity.web.posting.entity.Posting;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,4 +18,7 @@ public class Member {
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<PersonalInformation> personalInformationList;
+
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Posting> postingList;
 }

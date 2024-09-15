@@ -3,6 +3,7 @@ package _i5i.AISecurity.web.posting.entity;
 import _i5i.AISecurity.common.BaseEntity;
 import _i5i.AISecurity.web.board.entity.Board;
 import _i5i.AISecurity.web.leaked_information.entity.LeakedInformation;
+import _i5i.AISecurity.web.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,8 +26,8 @@ public class Posting extends BaseEntity {
     @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
     private List<PostingContent> postingContentList;
 
-    @ManyToOne @JoinColumn(name = "board_id")
-    private Board board;
+    @ManyToOne @JoinColumn(name = "member_id")
+    private Member member;
 
     @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
     private List<LeakedInformation> leakedInformationList;
