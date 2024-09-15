@@ -1,10 +1,10 @@
 package _i5i.AISecurity.web.member.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import _i5i.AISecurity.web.personal_information.entity.PersonalInformation;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Builder
@@ -14,4 +14,7 @@ import lombok.*;
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<PersonalInformation> personalInformationList;
 }
