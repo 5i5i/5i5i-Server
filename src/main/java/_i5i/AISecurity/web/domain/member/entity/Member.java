@@ -1,7 +1,7 @@
-package _i5i.AISecurity.web.member.entity;
+package _i5i.AISecurity.web.domain.member.entity;
 
-import _i5i.AISecurity.web.personal_information.entity.PersonalInformation;
-import _i5i.AISecurity.web.posting.entity.Posting;
+import _i5i.AISecurity.web.domain.personal_information.entity.PersonalInformation;
+import _i5i.AISecurity.web.domain.posting.entity.Posting;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,10 +1,9 @@
-package _i5i.AISecurity.web.posting.converter;
+package _i5i.AISecurity.web.domain.posting.converter;
 
-import _i5i.AISecurity.web.posting.dto.PostingResponseDTO;
-import _i5i.AISecurity.web.posting.entity.Posting;
+import _i5i.AISecurity.web.domain.posting.dto.PostingResponseDTO;
+import _i5i.AISecurity.web.domain.posting.entity.Posting;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PostingConverter {
 

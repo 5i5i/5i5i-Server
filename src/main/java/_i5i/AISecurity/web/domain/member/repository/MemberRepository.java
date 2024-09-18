@@ -1,6 +1,6 @@
-package _i5i.AISecurity.web.member.repository;
+package _i5i.AISecurity.web.domain.member.repository;
 
-import _i5i.AISecurity.web.member.entity.Member;
+import _i5i.AISecurity.web.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

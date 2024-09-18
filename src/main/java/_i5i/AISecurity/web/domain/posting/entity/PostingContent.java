@@ -1,4 +1,4 @@
-package _i5i.AISecurity.web.posting.entity;
+package _i5i.AISecurity.web.domain.posting.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

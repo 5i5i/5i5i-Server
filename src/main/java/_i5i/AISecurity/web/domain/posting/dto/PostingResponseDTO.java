@@ -1,4 +1,4 @@
-package _i5i.AISecurity.web.posting.dto;
+package _i5i.AISecurity.web.domain.posting.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

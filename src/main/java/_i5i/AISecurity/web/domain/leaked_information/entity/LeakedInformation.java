@@ -1,5 +1,5 @@
-package _i5i.AISecurity.web.leaked_information.entity;
-import _i5i.AISecurity.web.posting.entity.Posting;
+package _i5i.AISecurity.web.domain.leaked_information.entity;
+import _i5i.AISecurity.web.domain.posting.entity.Posting;
 import jakarta.persistence.*;
 import lombok.*;
 
