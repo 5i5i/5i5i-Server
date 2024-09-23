@@ -14,7 +14,5 @@ public class PostingRequestDTO {
     @AllArgsConstructor
     public static class PostingUploadRequestDTO{
         private String title;
-        private Long risk;
-        private String content;
     }
 }
