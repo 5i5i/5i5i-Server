@@ -1,5 +1,6 @@
 package _i5i.AISecurity.web.domain.posting.converter;
 
+import _i5i.AISecurity.web.domain.member.entity.Member;
 import _i5i.AISecurity.web.domain.posting.dto.PostingRequestDTO;
 import _i5i.AISecurity.web.domain.posting.dto.PostingResponseDTO;
 import _i5i.AISecurity.web.domain.posting.entity.Posting;
@@ -28,10 +29,11 @@ public class PostingConverter {
                 .build();
     }
 
-    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto){
+    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto, Member member){
         return Posting.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
+                .member(member)
                 .build();
     }
 }
