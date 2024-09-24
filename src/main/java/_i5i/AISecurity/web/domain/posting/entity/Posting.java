@@ -22,6 +22,8 @@ public class Posting extends BaseEntity {
 
     private Long risk;
 
+    private String content;
+
     @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
     private List<PostingContent> postingContentList;
 
