@@ -8,11 +8,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class PostingConverter {
+
+    public static PostingResponseDTO.resultDTO toResultDTO(Posting posting){
+        return PostingResponseDTO.resultDTO.builder()
+                .postingId(posting.getId())
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
 
     public static PostingResponseDTO.postingListDTO toPostingListDTO(Page<Posting> postingList){
         List<PostingResponseDTO.postingSummaryDTO> postingSummaryDTOS=postingList.stream()
