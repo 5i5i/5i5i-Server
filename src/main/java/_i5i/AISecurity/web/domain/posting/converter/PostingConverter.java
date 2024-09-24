@@ -28,10 +28,10 @@ public class PostingConverter {
                 .build();
     }
 
-    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto, String contentHtml){
+    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto){
         return Posting.builder()
                 .title(dto.getTitle())
-                .content(contentHtml)
+                .content(dto.getContent())
                 .build();
     }
 }

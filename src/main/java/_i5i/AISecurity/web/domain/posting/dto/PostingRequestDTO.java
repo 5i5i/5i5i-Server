@@ -14,5 +14,6 @@ public class PostingRequestDTO {
     @AllArgsConstructor
     public static class PostingUploadRequestDTO{
         private String title;
+        private String content;
     }
 }
