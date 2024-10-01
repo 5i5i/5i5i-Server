@@ -24,9 +24,6 @@ public class Posting extends BaseEntity {
 
     private String content;
 
-    @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
-    private List<PostingContent> postingContentList;
-
     @ManyToOne @JoinColumn(name = "member_id")
     private Member member;
 

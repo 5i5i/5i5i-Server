@@ -44,4 +44,13 @@ public class PostingConverter {
                 .member(member)
                 .build();
     }
+
+    public static PostingResponseDTO.postingcontentDTO toPostingcontentDTO(Posting posting,String memberName){
+        return PostingResponseDTO.postingcontentDTO.builder()
+                .postingId(posting.getId())
+                .title(posting.getTitle())
+                .content(posting.getContent())
+                .name(memberName)
+                .build();
+    }
 }

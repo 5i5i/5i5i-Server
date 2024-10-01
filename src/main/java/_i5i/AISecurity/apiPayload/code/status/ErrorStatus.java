@@ -22,6 +22,9 @@ public enum ErrorStatus implements BaseErrorCode {
     //MEMBER
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND,"MEMBER001","Member not found"),
 
+    //POSTING
+    POSTING_NOT_FOUND(HttpStatus.NOT_FOUND,"POSTING001","Posting not found"),
+
     ;
 
     private final HttpStatus httpStatus;
