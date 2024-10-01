@@ -20,11 +20,11 @@ public class PersonalInformation {
 
     private String address;
 
-    @Description("남자는0, 여자는1")
+    @Description("남자는 false, 여자는 true")
     private Boolean gender;
 
     private String birth;
 
-    @ManyToOne @JoinColumn(name = "member_id")
+    @OneToOne @JoinColumn(name = "member_id")
     private Member member;
 }
