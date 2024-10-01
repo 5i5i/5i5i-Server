@@ -18,8 +18,8 @@ public class Member {
 
     private String name;
 
-    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
-    private List<PersonalInformation> personalInformationList;
+    @OneToOne(mappedBy = "member",cascade = CascadeType.ALL)
+    private PersonalInformation personalInformation;
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Posting> postingList;
