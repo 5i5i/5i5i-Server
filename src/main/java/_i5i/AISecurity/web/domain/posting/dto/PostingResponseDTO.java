@@ -1,5 +1,6 @@
 package _i5i.AISecurity.web.domain.posting.dto;
 
+import _i5i.AISecurity.web.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +36,17 @@ public class PostingResponseDTO {
         Long postingId;
         String title;
         LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class postingcontentDTO{
+        Long postingId;
+        String title;
+        String content;
+        String name;
     }
 
 }
