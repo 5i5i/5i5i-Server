@@ -41,7 +41,14 @@ public class PostingController {
         return ApiResponse.onSuccess(PostingConverter.toResultDTO(posting));
     }
 
-
+    @GetMapping("/{postingId}")
+    @Operation(summary = "게시글 조회 API",description ="특정 블로거의 게시글을 조회하는 API")
+    @ApiResponses({
+        @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "Ok, 성공")
+    })public ApiResponse<PostingResponseDTO.postingcontentDTO> getPosting(@PathVariable(name = "postingId")Long postingId){
+        PostingResponseDTO.postingcontentDTO postingDTO=postingService.getPosting(postingId);
+        return ApiResponse.onSuccess(postingDTO);
+    }
 
 }
 
