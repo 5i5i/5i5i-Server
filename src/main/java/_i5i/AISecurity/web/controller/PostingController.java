@@ -5,19 +5,31 @@ import _i5i.AISecurity.web.domain.posting.converter.PostingConverter;
 import _i5i.AISecurity.web.domain.posting.dto.PostingRequestDTO;
 import _i5i.AISecurity.web.domain.posting.dto.PostingResponseDTO;
 import _i5i.AISecurity.web.domain.posting.entity.Posting;
-import _i5i.AISecurity.web.service.PostingUploadService;
+import _i5i.AISecurity.web.service.PostingService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class PostingUploadController {
-    private final PostingUploadService postingUploadService;
+public class PostingController {
+
+    private final PostingService postingService;
+
+    @GetMapping("/{memberId}/postingList")
+    @Operation(summary = "게시글 전체 조회 API",description = "특정 블로거의 게시글 리스트를 조회하는 API")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "Ok, 성공")
+    }) @Parameters({
+            @Parameter(name="page",description = "페이지 번호")
+    }) public ApiResponse<PostingResponseDTO.postingListDTO> getPostingList(@PathVariable(name="memberId") Long memberId, @RequestParam(name="page") Integer page){
+        Page<Posting> postingList=postingService.getPostingList(memberId, page);
+        return ApiResponse.onSuccess(PostingConverter.toPostingListDTO(postingList));
+    }
 
     @PostMapping(value = "/posting/upload/{memberId}")
     @Operation(summary = "블로그 글 등록 API",description = "블로그 글을 등록하는 API입니다. 글 내용은 html형식의 string으로 보내주시면 됩니다")
@@ -25,7 +37,12 @@ public class PostingUploadController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK, 성공"),
     })
     public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long memberId, @RequestPart PostingRequestDTO.PostingUploadRequestDTO dto){
-        Posting posting=postingUploadService.createPosting(dto, memberId);
+        Posting posting=postingService.createPosting(dto, memberId);
         return ApiResponse.onSuccess(PostingConverter.toResultDTO(posting));
     }
+
+
+
 }
+
+
