@@ -25,6 +25,9 @@ public enum ErrorStatus implements BaseErrorCode {
     //POSTING
     POSTING_NOT_FOUND(HttpStatus.NOT_FOUND,"POSTING001","Posting not found"),
 
+    //PersonalInformation
+    PERSONALINFORMATION_NOT_FOUND(HttpStatus.NOT_FOUND,"PERSONALINFORMATION001","PersonalInf not found"),
+
     ;
 
     private final HttpStatus httpStatus;

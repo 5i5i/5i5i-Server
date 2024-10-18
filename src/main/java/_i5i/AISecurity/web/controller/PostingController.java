@@ -36,7 +36,7 @@ public class PostingController {
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK, 성공"),
     })
-    public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long memberId, @RequestPart PostingRequestDTO.PostingUploadRequestDTO dto){
+    public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long memberId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto){
         Posting posting=postingService.createPosting(dto, memberId);
         return ApiResponse.onSuccess(PostingConverter.toResultDTO(posting));
     }
