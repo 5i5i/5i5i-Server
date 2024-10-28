@@ -28,10 +28,10 @@ public class PostingService {
         return postingRepository.findAllByMember(member, PageRequest.of(page,8));
     }
 
-    public Posting createPosting(PostingRequestDTO.PostingUploadRequestDTO dto, Long memberId){
-        Member member=memberRepository.findById(memberId)
-                .orElseThrow(()->new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-        Posting posting= PostingConverter.toEntity(dto,member);
+    public Posting createPosting(PostingRequestDTO.PostingUploadRequestDTO dto, Long postingId){
+        Posting posting=postingRepository.findById(postingId)
+                .orElseThrow(()->new PostingHandler(ErrorStatus.POSTING_NOT_FOUND));
+        posting.updateContent(dto.getContent(), dto.getTitle());
         return postingRepository.save(posting);
     }
 
@@ -39,6 +39,17 @@ public class PostingService {
         Posting posting=postingRepository.findById(postingId)
                 .orElseThrow(()->new PostingHandler(ErrorStatus.POSTING_NOT_FOUND));
         return PostingConverter.toPostingcontentDTO(posting,posting.getMember().getName());
+    }
+
+    public PostingResponseDTO.resultDTO updatePosting(Long postingId, PostingRequestDTO.PostingUploadRequestDTO dto){
+        Posting posting = postingRepository.findById(postingId)
+                .orElseThrow(() -> new PostingHandler(ErrorStatus.POSTING_NOT_FOUND));
+
+        posting.updateContent(dto.getContent(), dto.getTitle());
+
+        postingRepository.save(posting);
+
+        return PostingConverter.toResultDTO(posting);
     }
 }
 
