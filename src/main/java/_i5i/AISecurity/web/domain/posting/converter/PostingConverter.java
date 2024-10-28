@@ -37,10 +37,8 @@ public class PostingConverter {
                 .build();
     }
 
-    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto, Member member){
+    public static Posting toEntity(Member member){
         return Posting.builder()
-                .title(dto.getTitle())
-                .content(dto.getContent())
                 .member(member)
                 .build();
     }

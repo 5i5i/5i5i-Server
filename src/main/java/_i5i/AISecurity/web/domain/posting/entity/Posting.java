@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Posting extends BaseEntity {
@@ -30,4 +31,8 @@ public class Posting extends BaseEntity {
     @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
     private List<LeakedInformation> leakedInformationList;
 
+    public void updateContent(String content, String title) {
+        this.content = content;
+        this.title = title;
+    }
 }
