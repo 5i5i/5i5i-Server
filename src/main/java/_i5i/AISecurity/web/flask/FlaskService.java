@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -59,11 +58,7 @@ public class FlaskService {
 
         Map<String, Object> requestData = new HashMap<>();
         requestData.put("content", dto.getContent());
-        requestData.put("personalInf-address", personalInf.getAddress());
-        requestData.put("personalInf-birth",personalInf.getBirth());
-        requestData.put("personalInf-gender",personalInf.getGender());
-        requestData.put("personalInf-name",personalInf.getName());
-        requestData.put("personalInf-phonenum",personalInf.getPhoneNum());
+        requestData.put("personalInf", personalInf);
 
         String param = objectMapper.writeValueAsString(requestData);
 
