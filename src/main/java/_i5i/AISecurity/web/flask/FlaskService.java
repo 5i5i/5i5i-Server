@@ -6,7 +6,11 @@ import _i5i.AISecurity.web.domain.member.entity.Member;
 import _i5i.AISecurity.web.domain.member.repository.MemberRepository;
 import _i5i.AISecurity.web.domain.personal_information.entity.PersonalInformation;
 import _i5i.AISecurity.web.domain.personal_information.repository.PersonalInformationRepository;
+import _i5i.AISecurity.web.domain.posting.converter.PostingConverter;
 import _i5i.AISecurity.web.domain.posting.dto.PostingRequestDTO;
+import _i5i.AISecurity.web.domain.posting.dto.PostingResponseDTO;
+import _i5i.AISecurity.web.domain.posting.entity.Posting;
+import _i5i.AISecurity.web.domain.posting.repository.PostingRepository;
 import _i5i.AISecurity.web.handler.MemberHandler;
 import _i5i.AISecurity.web.handler.PersonalInformationHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -31,12 +34,17 @@ public class FlaskService {
     private final ObjectMapper objectMapper;
     private final PersonalInformationRepository personalInfRepository;
     private final MemberRepository memberRepository;
+    private final PostingRepository postingRepository;
 
     @Transactional
-    public String sendToFlask(Long memberId, PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
+    public PostingResponseDTO.resultDTO sendToFlask(Long memberId, PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
 
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(()->new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+
+        Posting posting = PostingConverter.toEntity(member);
+        posting = postingRepository.save(posting); // ID 생성 후 저장
+
         PersonalInformation personalInf=personalInfRepository.findByMember(member)
                 .orElseThrow(()->new PersonalInformationHandler(ErrorStatus.PERSONALINFORMATION_NOT_FOUND));
 
@@ -50,11 +58,7 @@ public class FlaskService {
 
         Map<String, Object> requestData = new HashMap<>();
         requestData.put("content", dto.getContent());
-        requestData.put("personalInf-address", personalInf.getAddress());
-        requestData.put("personalInf-birth",personalInf.getBirth());
-        requestData.put("personalInf-gender",personalInf.getGender());
-        requestData.put("personalInf-name",personalInf.getName());
-        requestData.put("personalInf-phonenum",personalInf.getPhoneNum());
+        requestData.put("personalInf", personalInf);
 
         String param = objectMapper.writeValueAsString(requestData);
 
@@ -64,6 +68,8 @@ public class FlaskService {
         String url = "http://127.0.0.1:8082/receive_string";
 
         //Flask 서버로 데이터를 전송하고 받은 응답 값을 return
-        return restTemplate.postForObject(url, entity, String.class);
+        restTemplate.postForObject(url, entity, String.class);
+
+        return PostingConverter.toResultDTO(posting);
     }
 }

@@ -25,6 +25,18 @@ public class PersonalInformation {
 
     private String birth;
 
+    private String univ;
+
+    private String major;
+
+    private String club;
+
+    private String company;
+
+    private String department;
+
+    private String rating;
+
     @OneToOne @JoinColumn(name = "member_id")
     private Member member;
 }
