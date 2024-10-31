@@ -12,12 +12,9 @@ public class LeakedInformation {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Builder.Default
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'NOMASKING'")
-    private MaskingStatus maskingStatus=MaskingStatus.NOMASKING;
-
     private Long riskLevel;
+
+    private String content;
 
     @ManyToOne @JoinColumn(name = "posting_id")
     private Posting posting;
