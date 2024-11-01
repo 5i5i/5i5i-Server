@@ -49,4 +49,13 @@ public class PostingResponseDTO {
         String name;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class infResultDTO{
+        List<String> leakedInfs;
+        List<String> locations;
+    }
+
 }

@@ -59,6 +59,15 @@ public class PostingController {
         return ApiResponse.onSuccess(result);
     }
 
+    @GetMapping("/{postingId}/infResult")
+    @Operation(summary = "게시글 위험도&노출된 위치 결과 반환 API")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "ok, 성공")
+    })public ApiResponse<PostingResponseDTO.infResultDTO> getInfResult(@PathVariable(name = "postingId")Long postingId){
+        PostingResponseDTO.infResultDTO dto=postingService.getInfResult(postingId);
+        return ApiResponse.onSuccess(dto);
+    }
+
 }
 
 
