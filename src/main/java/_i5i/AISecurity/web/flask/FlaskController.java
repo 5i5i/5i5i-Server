@@ -17,10 +17,10 @@ public class FlaskController {
 
     private final FlaskService flaskService;
 
-    @PostMapping("/flask/{memberId}")
+    @PostMapping("/flask/{memberId}/{postingId}")
     @Operation(summary = "플라스크로 게시글, 개인정보 넘기기")
-    public ApiResponse<PostingResponseDTO.resultDTO> sendToFlask(@PathVariable Long memberId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
-        PostingResponseDTO.resultDTO result=flaskService.sendToFlask(memberId,dto);
+    public ApiResponse<PostingResponseDTO.resultDTO> sendToFlask(@PathVariable Long memberId,@PathVariable Long postingId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
+        PostingResponseDTO.resultDTO result=flaskService.sendToFlask(memberId,postingId,dto);
         return ApiResponse.onSuccess(result);
     }
 }
