@@ -2,6 +2,7 @@ package _i5i.AISecurity.web.domain.posting.entity;
 
 import _i5i.AISecurity.common.BaseEntity;
 import _i5i.AISecurity.web.domain.leaked_information.entity.LeakedInformation;
+import _i5i.AISecurity.web.domain.location.entity.Location;
 import _i5i.AISecurity.web.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,6 +31,9 @@ public class Posting extends BaseEntity {
 
     @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
     private List<LeakedInformation> leakedInformationList;
+
+    @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
+    private List<Location> locationList;
 
     public void updateContent(String content, String title) {
         this.content = content;
