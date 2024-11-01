@@ -13,6 +13,7 @@ import _i5i.AISecurity.web.domain.posting.entity.Posting;
 import _i5i.AISecurity.web.domain.posting.repository.PostingRepository;
 import _i5i.AISecurity.web.handler.MemberHandler;
 import _i5i.AISecurity.web.handler.PersonalInformationHandler;
+import _i5i.AISecurity.web.handler.PostingHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -37,13 +38,13 @@ public class FlaskService {
     private final PostingRepository postingRepository;
 
     @Transactional
-    public PostingResponseDTO.resultDTO sendToFlask(Long memberId, PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
+    public PostingResponseDTO.resultDTO sendToFlask(Long memberId, Long postingId,PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
 
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(()->new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        Posting posting = PostingConverter.toEntity(member);
-        posting = postingRepository.save(posting); // ID 생성 후 저장
+        Posting posting = postingRepository.findById(postingId)
+                .orElseThrow(()->new PostingHandler(ErrorStatus.POSTING_NOT_FOUND));
 
         PersonalInformation personalInf=personalInfRepository.findByMember(member)
                 .orElseThrow(()->new PersonalInformationHandler(ErrorStatus.PERSONALINFORMATION_NOT_FOUND));

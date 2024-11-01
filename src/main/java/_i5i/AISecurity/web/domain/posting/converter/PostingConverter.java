@@ -36,12 +36,14 @@ public class PostingConverter {
         return PostingResponseDTO.postingSummaryDTO.builder()
                 .postingId(posting.getId())
                 .title(posting.getTitle())
-                .createdAt(posting.getCreatedAt())
+                .createdAt(LocalDateTime.now())
                 .build();
     }
 
-    public static Posting toEntity(Member member){
+    public static Posting toEntity(PostingRequestDTO.PostingUploadRequestDTO dto, Member member){
         return Posting.builder()
+                .title(dto.getTitle())
+                .content(dto.getContent())
                 .member(member)
                 .build();
     }
