@@ -31,13 +31,13 @@ public class PostingController {
         return ApiResponse.onSuccess(PostingConverter.toPostingListDTO(postingList));
     }
 
-    @PatchMapping(value = "/posting/upload/{postingId}")
+    @PatchMapping(value = "/posting/upload/{memberId}")
     @Operation(summary = "블로그 글 등록 API",description = "블로그 글을 등록하는 API입니다. 글 내용은 html형식의 string으로 보내주시면 됩니다")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK, 성공"),
     })
-    public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long postingId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto){
-        Posting posting=postingService.createPosting(dto, postingId);
+    public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long memberId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto){
+        Posting posting=postingService.createPosting(dto, memberId);
         return ApiResponse.onSuccess(PostingConverter.toResultDTO(posting));
     }
 
