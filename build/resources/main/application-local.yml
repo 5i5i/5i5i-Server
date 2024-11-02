@@ -17,16 +17,25 @@ spring:
   codec:
     max-in-memory-size: 200MB
 
-#  servlet:
-#    multipart:
-#      max-file-size: 50MB
-#      max-request-size: 50MB
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 logging:
   file:
     name: logs/application.log
   level:
     root: INFO
+    org:
+      apache:
+        coyote:
+          http11: DEBUG
+        tomcat:
+          util:
+            net: DEBUG
+      springframework:
+        web: DEBUG
 
 server:
   tomcat:
