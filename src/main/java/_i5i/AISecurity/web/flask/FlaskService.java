@@ -4,6 +4,7 @@ package _i5i.AISecurity.web.flask;
 import _i5i.AISecurity.apiPayload.code.status.ErrorStatus;
 import _i5i.AISecurity.web.domain.member.entity.Member;
 import _i5i.AISecurity.web.domain.member.repository.MemberRepository;
+import _i5i.AISecurity.web.domain.personal_information.dto.PersonalInfRequestDTO;
 import _i5i.AISecurity.web.domain.personal_information.entity.PersonalInformation;
 import _i5i.AISecurity.web.domain.personal_information.repository.PersonalInformationRepository;
 import _i5i.AISecurity.web.domain.posting.converter.PostingConverter;
@@ -38,7 +39,7 @@ public class FlaskService {
     private final PostingRepository postingRepository;
 
     @Transactional
-    public PostingResponseDTO.resultDTO sendToFlask(Long memberId, Long postingId,PostingRequestDTO.PostingUploadRequestDTO dto) throws JsonProcessingException {
+    public PostingResponseDTO.resultDTO sendToFlask(Long memberId, Long postingId) throws JsonProcessingException {
 
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(()->new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
@@ -49,6 +50,20 @@ public class FlaskService {
         PersonalInformation personalInf=personalInfRepository.findByMember(member)
                 .orElseThrow(()->new PersonalInformationHandler(ErrorStatus.PERSONALINFORMATION_NOT_FOUND));
 
+        PersonalInfRequestDTO.PersonalInfDTO personalInfDTO=PersonalInfRequestDTO.PersonalInfDTO.builder()
+                                                                .name(personalInf.getName())
+                                                                .phoneNum(personalInf.getPhoneNum())
+                                                                .address(personalInf.getAddress())
+                                                                .gender(personalInf.getGender())
+                                                                .birth(personalInf.getBirth())
+                                                                .univ(personalInf.getUniv())
+                                                                .major(personalInf.getMajor())
+                                                                .club(personalInf.getClub())
+                                                                .company(personalInf.getCompany())
+                                                                .department(personalInf.getDepartment())
+                                                                .rating(personalInf.getRating())
+                                                                .build();
+
         RestTemplate restTemplate = new RestTemplate();
 
         //헤더를 JSON으로 설정함
@@ -58,8 +73,8 @@ public class FlaskService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestData = new HashMap<>();
-        requestData.put("content", dto.getContent());
-        requestData.put("personalInf", personalInf);
+        requestData.put("content", posting.getContent());
+        requestData.put("personalInf", personalInfDTO);
 
         String param = objectMapper.writeValueAsString(requestData);
 
@@ -71,6 +86,6 @@ public class FlaskService {
         //Flask 서버로 데이터를 전송하고 받은 응답 값을 return
         restTemplate.postForObject(url, entity, String.class);
 
-        return PostingConverter.toResultDTO(posting);
+        return PostingConverter.toPostingResultDTO(posting);
     }
 }
