@@ -42,7 +42,6 @@ public class PostingController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK, 성공"),
     })
     public ApiResponse<PostingResponseDTO.resultDTO> createPosting(@PathVariable Long memberId, @RequestBody PostingRequestDTO.PostingUploadRequestDTO dto){
-        logger.info("Controller createPosting 호출됨 - memberId: {}, dto: {}", memberId, dto);
         if (dto.getContent() != null && dto.getContent().length() > 10000) {  // 예를 들어 50,000자로 제한
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Content length exceeds allowed limit.");
         }
