@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostingConverter {
 
-    public static PostingResponseDTO.resultDTO toResultDTO(Posting posting){
+    public static PostingResponseDTO.resultDTO toPostingResultDTO(Posting posting){
         return PostingResponseDTO.resultDTO.builder()
                 .postingId(posting.getId())
                 .createdAt(LocalDateTime.now())

@@ -22,6 +22,7 @@ public class Posting extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
 
     @ManyToOne @JoinColumn(name = "member_id")

@@ -7,7 +7,6 @@ spring:
   thymeleaf:
     cache: false
 
-
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false
@@ -15,9 +14,22 @@ spring:
     hibernate:
       ddl-auto: update # 첫 배포 이후 validate 으로 수정
 
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+  codec:
+    max-in-memory-size: 200MB
+
+#  servlet:
+#    multipart:
+#      max-file-size: 50MB
+#      max-request-size: 50MB
+
+logging:
+  file:
+    name: logs/application.log
+  level:
+    root: INFO
+
+server:
+  tomcat:
+    max-http-post-size: 52428800  # 20MB로 설정
 
 
