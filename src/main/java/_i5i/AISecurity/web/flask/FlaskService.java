@@ -72,6 +72,7 @@ public class FlaskService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestData = new HashMap<>();
+        requestData.put("posting_id",posting.getId());
         requestData.put("content", posting.getContent());
         requestData.put("personalInf", personalInfDTO);
 
