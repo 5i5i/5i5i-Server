@@ -8,7 +8,6 @@ import _i5i.AISecurity.web.domain.personal_information.dto.PersonalInfRequestDTO
 import _i5i.AISecurity.web.domain.personal_information.entity.PersonalInformation;
 import _i5i.AISecurity.web.domain.personal_information.repository.PersonalInformationRepository;
 import _i5i.AISecurity.web.domain.posting.converter.PostingConverter;
-import _i5i.AISecurity.web.domain.posting.dto.PostingRequestDTO;
 import _i5i.AISecurity.web.domain.posting.dto.PostingResponseDTO;
 import _i5i.AISecurity.web.domain.posting.entity.Posting;
 import _i5i.AISecurity.web.domain.posting.repository.PostingRepository;
