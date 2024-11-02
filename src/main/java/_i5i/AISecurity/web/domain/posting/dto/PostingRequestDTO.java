@@ -8,7 +8,6 @@ public class PostingRequestDTO {
     @Getter
     public static class PostingUploadRequestDTO{
         private String title;
-        @JsonRawValue
         private String content;
     }
 }

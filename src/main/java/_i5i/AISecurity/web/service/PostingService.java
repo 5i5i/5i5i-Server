@@ -44,16 +44,11 @@ public class PostingService {
     public Posting createPosting(PostingRequestDTO.PostingUploadRequestDTO dto, Long memberId){
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(()->new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-        logger.info("Member found - memberId: {}, member: {}", memberId, member);
 
         Posting posting=PostingConverter.toEntity(dto, member);
-        logger.info("Posting entity created from dto - posting: {}", posting);
 
-//        return postingRepository.save(posting);
-        Posting savedPosting = postingRepository.save(posting);
-        logger.info("Posting saved - posting: {}", savedPosting);
+        return postingRepository.save(posting);
 
-        return savedPosting;
     }
 
     public PostingResponseDTO.postingcontentDTO getPosting(Long postingId){
