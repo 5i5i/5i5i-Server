@@ -28,11 +28,11 @@ public class Posting extends BaseEntity {
     @ManyToOne @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
-    private List<LeakedInformation> leakedInformationList;
+    @OneToOne(mappedBy = "posting",cascade = CascadeType.ALL)
+    private LeakedInformation leakedInformation;
 
-    @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
-    private List<Location> locationList;
+    @OneToOne(mappedBy = "posting",cascade = CascadeType.ALL)
+    private Location location;
 
     public void updateContent(String content, String title) {
         this.content = content;
