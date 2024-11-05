@@ -72,10 +72,12 @@ public class PostingService {
         Posting posting = postingRepository.findById(postingId)
                 .orElseThrow(() -> new PostingHandler(ErrorStatus.POSTING_NOT_FOUND));
 
-        List<LeakedInformation> leakedInfs=leakedInfRepository.findAllByPosting(posting);
-        List<Location> locations=locationRepository.findAllByPosting(posting);
+        LeakedInformation leakedInf=leakedInfRepository.findByPosting(posting)
+                .orElseThrow(()-> new RuntimeException("Error: No LeakedInformation found for the specified Posting ID: " + posting.getId()));
+        Location location=locationRepository.findByPosting(posting)
+                .orElseThrow(()->new RuntimeException("Error: No Location found for the specified Posting ID: " + posting.getId()));
 
-        return PostingConverter.toInfResultDTO(locations,leakedInfs);
+        return PostingConverter.toInfResultDTO(location,leakedInf);
     }
 }
 

@@ -54,8 +54,8 @@ public class PostingResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class infResultDTO{
-        List<String> leakedInfs;
-        List<String> locations;
+        String leakedInfContent;
+        String locationContent;
     }
 
 }

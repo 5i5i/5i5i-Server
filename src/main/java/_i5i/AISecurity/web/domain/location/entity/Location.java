@@ -15,6 +15,6 @@ public class Location {
 
     private String content;
 
-    @ManyToOne @JoinColumn(name = "posting_id")
+    @OneToOne @JoinColumn(name = "posting_id")
     private Posting posting;
 }

@@ -57,18 +57,10 @@ public class PostingConverter {
                 .build();
     }
 
-    public static PostingResponseDTO.infResultDTO toInfResultDTO(List<Location> locations, List<LeakedInformation> leakedInformations){
-        List<String> locationlist=locations.stream()
-                .map(Location::getContent)
-                .collect(Collectors.toList());
-
-        List<String> leakedInfList=leakedInformations.stream()
-                .map(LeakedInformation::getContent)
-                .collect(Collectors.toList());
-
+    public static PostingResponseDTO.infResultDTO toInfResultDTO(Location location, LeakedInformation leakedInf){
         return PostingResponseDTO.infResultDTO.builder()
-                .leakedInfs(leakedInfList)
-                .locations(locationlist)
+                .leakedInfContent(leakedInf.getContent())
+                .locationContent(location.getContent())
                 .build();
     }
 }
